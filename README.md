@@ -11,7 +11,8 @@
 
 Given input data about a patient, the goal is to predict the LOS ( Lenght of Stay ) of the patient in the hospital.
 
-> This parameter helps hospitals to identify patients of high LOS risk (patients who will stay longer) at the time of admission. Once identified, patients with high > LOS risk can have their treatment plan optimized to miminize LOS and lower the chance of staff/visitor infection. Also, prior knowledge of LOS can aid in ?> > > ?> logistics such as room and bed allocation planning.
+> This parameter helps hospitals to identify patients of high LOS risk (patients who will stay longer) at the time of admission. Once identified, patients with high > LOS risk can have their treatment plan optimized to miminize LOS and lower the chance of staff/visitor infection. Also, prior knowledge of LOS can aid in
+> logistics such as room and bed allocation planning.
 
 
 
