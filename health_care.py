@@ -31,7 +31,7 @@ The columns to be pre-processed from string to numerical values are :
 
 ## Pre processing these columns
 
-string_columns = ['Hospital_type_code', 'Hospital_region_code', 'Department', 'Ward_Type', 'Ward_Facility_Code', 'City_Code_Patient', 'Type of Admission', 'Severity of Illness', 'Age', 'Admission_Deposit', 'Stay' ]
+string_columns = ['Hospital_type_code', 'Hospital_region_code', 'Department', 'Ward_Type', 'Ward_Facility_Code', 'City_Code_Patient', 'Type of Admission', 'Severity of Illness', 'Age',  'Stay' ]
 encoder = LabelEncoder()
 
 for column in string_columns :
