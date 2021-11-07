@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
 
 
 ## loading the file
@@ -34,12 +35,24 @@ The columns to be pre-processed from string to numerical values are :
 string_columns = ['Hospital_type_code', 'Hospital_region_code', 'Department', 'Ward_Type', 'Ward_Facility_Code', 'City_Code_Patient', 'Type of Admission', 'Severity of Illness', 'Age',  'Stay' ]
 encoder = LabelEncoder()
 
+## label_encoded data
+X_le = health_care.drop(['Stay', 'case_id', 'patientid'], axis=1)
+y_le = health_care['Stay']
+
 for column in string_columns :
-    health_care[column] = encoder.fit(health_care[column]).transform(health_care[column])
-    
-health_care.head()
+    if column == 'Stay' :
+        y_le = encoder.fit_transform(y_le)
+    else : 
+        X_le[column] = encoder.fit(X_le[column]).transform(X_le[column])
 
 ## getting the inputs and labels
 
-X = health_care.drop(['Stay', 'case_id', 'patientid'], axis=1)
-y = health_care['Stay'].values
+X = X_le.values
+y = y_le
+
+
+
+
+
+
+
