@@ -246,3 +246,15 @@ cor_df.corr().sort_values('Type of Admission')
 #let's examine likelihood of a length of stay depending on the Severity of Illness.
 cor_df.corr().sort_values('Severity of Illness')
 #???What is the most impactful feature?
+
+
+"""
+Splitting our data for modelling
+"""
+#using from sklearn.model_selection import train_test_split model
+X = df.drop(columns=["Stay"])
+y = df["Stay"]
+print(X.shape)
+print(y.shape)
+#test size = 20%, train size = 80%
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=42)
