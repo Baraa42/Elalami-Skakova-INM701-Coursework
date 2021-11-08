@@ -93,3 +93,73 @@ for field in fields:
 
 #????here should an analysis of columns means and st dev
 
+#Missing Values
+#checking for missing values
+df.isnull().values.any()
+#Checking number of NANs for each column, in order to understand how many missing values there are in a dataframe.
+print("# of NaN in each columns:", df.isnull().sum(), sep='\n')
+
+"""
+To make sure we consider all the correct features to make an accurate prediction, it may be useful to create some plots to have a better understanding of our data.
+We will be using the Python data visualisation library seaborn.
+We could begin by visualising the length of stays by type of admissions etc., by using a countplot(), that shows the counts of observations in each categorical bin using bars.
+"""
+
+#sorting by Stay for better representation in the visualisations
+df= df.sort_values(by = "Stay", ascending = True)
+#visualising the length of stays by age
+#plot size
+plt.figure(figsize = (15,4))
+#plot title
+plt.title("Age", fontdict = {'fontsize':15})
+ax = sns.countplot(x = "Age", hue = 'Stay', data = df)
+#?? comments
+"""
+the age group risk - 21-80y.o.
+"""
+
+#visualising the length of stays by type of admissions
+#plot size
+plt.figure(figsize = (15,4))
+#plot title
+plt.title("Type of Admission", fontdict = {'fontsize': 15})
+ax = sns.countplot(x = "Type of Admission", hue = 'Stay', data = df)
+"""???? comments on the graph
+Emergency and Trauma and mostly from 11 - 40 and range 51-60
+Next, it may be interesting to look at the Severity of Illness segments by stay.
+Again, we can use a count plot to visualise this.'
+""""
+
+#visualising the length of stays by Severity of Illness
+#plot size
+plt.figure(figsize = (15,4))
+#plot title
+plt.title("Severity of Illness", fontdict = {'fontsize':15})
+ax = sns.countplot(x = "Severity of Illness", hue = 'Stay', data = df)
+
+"""
+comments on the graph:
+mostly moderate and minor, and in age range 11-40 and range 51-60
+"""
+
+#visualising the length of stays by Available Extra Rooms in Hospital
+#plot size
+plt.figure(figsize = (20,4))
+#plot title
+plt.title("Available Extra Rooms in Hospital", fontdict = {'fontsize':15})
+ax = sns.countplot(x = "Available Extra Rooms in Hospital", hue = 'Stay', data = df)
+
+"""
+comments on the graph
+most rooms have additional 2-4 beds in the room available.
+"""
+#visualising the length of stays by Department
+#plot size
+plt.figure(figsize = (15,8))
+#plot title
+plt.title("Department", fontdict = {'fontsize':15})
+ax = sns.countplot(x = "Department", hue = 'Stay', data = df)
+
+"""
+mostly gynecology department
+"""
