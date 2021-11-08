@@ -241,10 +241,10 @@ cor_df['Stay'] = le.fit_transform(cor_df['Stay'])
 cor_df.corr()
 #Because we want to try to predict the likelihood of a length of stay depending on the type of admission, it is useful to visualise the sorted correlation values for the column Type of Admission.
 # here, we are appling sort_values() to visualise the correlation values in a descending order.
-cor_df.corr().sort_values('Type of Admission')
+cor_df.corr()['Type of Admission'].sort_values()
 
 #let's examine likelihood of a length of stay depending on the Severity of Illness.
-cor_df.corr().sort_values('Severity of Illness')
+cor_df.corr()['Severity of Illness'].sort_values()
 #???What is the most impactful feature?
 
 
