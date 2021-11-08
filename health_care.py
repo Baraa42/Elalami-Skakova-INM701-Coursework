@@ -195,3 +195,32 @@ df['Bed Grade'] = df['Bed Grade'].fillna(med)
 
 #missing values check after data manipulation
 df.isnull().values.any()
+
+#Next, we may want to check the features to create some more meaningful variables and reduce the number of features.
+#????think of smth to work on the type
+#In the code cell below, we use the attribute dtype on df to retrieve the data type for each column.
+print (df.dtypes)
+
+#We want to map the name of each Severity of Illness to the corresponding number in ascending order.
+df['Severity of Illness'] = df['Severity of Illness'].map({'Minor':1, 'Moderate': 2, 'Extreme':3})
+df['Type of Admission'] = df['Type of Admission'].map({'Trauma':1, 'Emergency': 2, 'Urgent':3})
+df
+
+"""
+For now, we assume these columns are not important for our analysis:
+0case_id
+1Hospital_code
+2Hospital_type_code
+3City_Code_Hospital
+7Ward_Type - anyways we know department, so we can guess the ward type
+8Ward_Facility_Code
+"""
+#dropping unwanted columns
+df.drop(df.columns[0:4],axis=1, inplace=True)
+df.drop(df.columns[3:5], axis=1, inplace=True)
+print(df.shape)
+df
+
+#shuffling
+df= df.reindex(np.random.permutation(df.index))
+df.reset_index(inplace=True, drop=True)
