@@ -224,3 +224,25 @@ df
 #shuffling
 df= df.reindex(np.random.permutation(df.index))
 df.reset_index(inplace=True, drop=True)
+
+#Correlation
+"""
+One way to decide which features are going to be more impactful when running an analysis is to look at the correlation between them.
+Pearson's correlations are single value numerical summaries that represent the strength and direction of a linear relationship. 
+Correlation values range from -1 to 1. Values further away from 0 represent stronger relationships, and the sign of the correlation (positive or negative) 
+represents the direction of the relationship. 
+The graphs below depict a visual representation of Pearson correlations.
+"""
+#creating a copy of df to have an original for further manipulation
+cor_df = df.copy()
+le = LabelEncoder()
+cor_df['Stay'] = le.fit_transform(cor_df['Stay'])
+#use corr() on cor_df
+cor_df.corr()
+#Because we want to try to predict the likelihood of a length of stay depending on the type of admission, it is useful to visualise the sorted correlation values for the column Type of Admission.
+# here, we are appling sort_values() to visualise the correlation values in a descending order.
+cor_df.corr().sort_values('Type of Admission')
+
+#let's examine likelihood of a length of stay depending on the Severity of Illness.
+cor_df.corr().sort_values('Severity of Illness')
+#???What is the most impactful feature?
