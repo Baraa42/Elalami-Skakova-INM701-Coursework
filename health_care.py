@@ -219,7 +219,15 @@ For now, we assume these columns are not important for our analysis:
 df.drop(df.columns[0:4],axis=1, inplace=True)
 df.drop(df.columns[3:5], axis=1, inplace=True)
 print(df.shape)
-df
+#df
+#print (df.dtypes)
+
+#using LabelEncoder to change and transform the object format of 'Hospital_region_code','Department','Age', 'Stay' columns
+le = LabelEncoder()
+for col in ['Hospital_region_code','Department','Age', 'Stay']:
+    df[col]= df[col].astype('str')
+    df[col]= le.fit_transform(df[col])
+
 
 #shuffling
 df= df.reindex(np.random.permutation(df.index))
@@ -237,6 +245,8 @@ The graphs below depict a visual representation of Pearson correlations.
 cor_df = df.copy()
 le = LabelEncoder()
 cor_df['Stay'] = le.fit_transform(cor_df['Stay'])
+
+
 #use corr() on cor_df
 cor_df.corr()
 #Because we want to try to predict the likelihood of a length of stay depending on the type of admission, it is useful to visualise the sorted correlation values for the column Type of Admission.
