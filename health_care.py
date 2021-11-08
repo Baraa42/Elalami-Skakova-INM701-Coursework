@@ -163,3 +163,35 @@ ax = sns.countplot(x = "Department", hue = 'Stay', data = df)
 """
 mostly gynecology department
 """
+
+#Preparing our data
+"""
+We saw in that columns "Bed Grade" and "City_Code_patient" have missing values. 
+Before deciding whether we shall drop these columns or keep some of them and try to fill the missing values with medians, 
+we can make and analysis to understand the percentage of missing values by creating this function "perc_mv".
+"""
+
+def perc_mv(x, y):
+    perc = y.isnull().sum() / len(x) * 100
+    return perc
+
+print('Missing value ratios:\nBed Grade: {}\nCity_Code_Patient: {}'.format(
+    perc_mv(df, df['Bed Grade']),
+    perc_mv(df, df['City_Code_Patient'])))
+
+"""
+As we can see, 0.03% of Bed Grade column and 1.42% of City_Code_Patient has missing values. 
+Therefore, we have enough values to fill the rows of the company column via any imputation method.
+"""
+
+# Assuming importance of the City_Code_Patient in the future analysis is minimalistic
+# let s drop it
+
+df = df.drop(['City_Code_Patient'], axis = 1)
+
+#let's fill missing values of 'Bed Grade' with its median of the column
+med = df['Bed Grade'].median()
+df['Bed Grade'] = df['Bed Grade'].fillna(med)
+
+#missing values check after data manipulation
+df.isnull().values.any()
